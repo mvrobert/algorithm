@@ -1,4 +1,6 @@
-## Given an integer x, return true if x is palindrome integer.
+## Palindrome Number
+Given an integer x, return true if x is palindrome integer.
+
 AlgorithmUtils.isPalindrome(14541);
 %
 
