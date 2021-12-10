@@ -61,3 +61,81 @@ AlgorithmUtils.romanToInt("MCMXCIV");
 	}
 ```
 1. Output is [1994]
+
+## Longest Common Prefix
+Write a function to find the longest common prefix string amongst an array of strings.
+
+If there is no common prefix, return an empty string "".
+AlgorithmUtils.longestCommonPrefix(["flower","flow","flight"]);
+%
+
+```java
+	public String longestCommonPrefix(String[] strs) {
+		if(strs == null || strs.length == 0)    return "";
+		String pre = strs[0];
+		int i = 1;
+		while(i < strs.length){
+			while(strs[i].indexOf(pre) != 0)
+				pre = pre.substring(0,pre.length()-1);
+			i++;
+		}
+		return pre;
+	}
+```
+1. Output is [fl]
+
+## Valid Parentheses
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+1) Open brackets must be closed by the same type of b
+rackets.
+2) Open brackets must be closed in the correct order.
+
+AlgorithmUtils.isValid("{[]}");
+%
+
+```java
+	public boolean isValid(String s) {
+		Stack<Character> stack = new Stack<Character>();
+		for (char c : s.toCharArray()) {
+			if (c == '(')
+				stack.push(')');
+			else if (c == '{')
+				stack.push('}');
+			else if (c == '[')
+				stack.push(']');
+			else if (stack.isEmpty() || stack.pop() != c)
+				return false;
+		}
+		return stack.isEmpty();
+	}
+```
+1. Output is [true]
+
+
+## Merge Two Sorted Lists
+You are given the heads of two sorted linked lists list1 and list2.
+
+Merge the two lists in a one sorted list. The list should be made by splicing together the nodes of the first two lists.
+
+Return the head of the merged linked list.
+
+AlgorithmUtils.mergeTwoLists(list1 = [1,2,4], list2 = [1,3,4]);
+%
+
+```java
+	public ListNode mergeTwoLists(ListNode l1, ListNode l2){
+			if(l1 == null) return l2;
+			if(l2 == null) return l1;
+			if(l1.val < l2.val){
+				l1.next = mergeTwoLists(l1.next, l2);
+				return l1;
+			} else{
+				l2.next = mergeTwoLists(l1, l2.next);
+				return l2;
+			}
+	}
+```
+1. Output is [1,1,2,3,4,4]
+
