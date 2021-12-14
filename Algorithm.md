@@ -163,7 +163,7 @@ public int removeDuplicates(int[] nums) {
 1. Output is [5, nums = [0,1,2,3,4,_,_,_,_,_]]
 
 
-##[Remove Element](https://leetcode.com/problems/remove-element/)
+## [Remove Element](https://leetcode.com/problems/remove-element/)
 AlgorithmUtils.removeElement(nums = [0,1,2,2,3,0,4,2], val = 2);
 %
 
