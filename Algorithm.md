@@ -1,4 +1,4 @@
-## Palindrome Number
+## [Palindrome Number](https://leetcode.com/problems/palindrome-number/)
 Given an integer x, return true if x is palindrome integer.
 
 AlgorithmUtils.isPalindrome(14541);
@@ -17,7 +17,7 @@ AlgorithmUtils.isPalindrome(14541);
 ```
 1. Output is [true]
 
-## Roman to Integer
+## [Roman to Integer](https://leetcode.com/problems/roman-to-integer/)
 Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
 ```
 Symbol       Value
@@ -64,7 +64,7 @@ AlgorithmUtils.romanToInt("MCMXCIV");
 ```
 1. Output is [1994]
 
-## Longest Common Prefix
+## [Longest Common Prefix](https://leetcode.com/problems/longest-common-prefix/)
 Write a function to find the longest common prefix string amongst an array of strings.
 
 If there is no common prefix, return an empty string "".
@@ -72,21 +72,21 @@ AlgorithmUtils.longestCommonPrefix(["flower","flow","flight"]);
 %
 
 ```java
-	public String longestCommonPrefix(String[] strs) {
-		if(strs == null || strs.length == 0)    return "";
-		String pre = strs[0];
-		int i = 1;
-		while(i < strs.length){
-			while(strs[i].indexOf(pre) != 0)
-				pre = pre.substring(0,pre.length()-1);
-			i++;
-		}
-		return pre;
-	}
+public String longestCommonPrefix(String[] strs) {
+    if(strs == null || strs.length == 0)    return "";
+    String pre = strs[0];
+    int i = 1;
+    while(i < strs.length){
+        while(strs[i].indexOf(pre) != 0)
+            pre = pre.substring(0,pre.length()-1);
+        i++;
+    }
+    return pre;
+}
 ```
 1. Output is [fl]
 
-## Valid Parentheses
+## [Valid Parentheses](https://leetcode.com/problems/valid-parentheses/)
 Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 
 An input string is valid if:
@@ -98,25 +98,25 @@ AlgorithmUtils.isValid("{[]}");
 %
 
 ```java
-	public boolean isValid(String s) {
-		Stack<Character> stack = new Stack<Character>();
-		for (char c : s.toCharArray()) {
-			if (c == '(')
-				stack.push(')');
-			else if (c == '{')
-				stack.push('}');
-			else if (c == '[')
-				stack.push(']');
-			else if (stack.isEmpty() || stack.pop() != c)
-				return false;
-		}
-		return stack.isEmpty();
+public boolean isValid(String s) {
+	Stack<Character> stack = new Stack<Character>();
+	for (char c : s.toCharArray()) {
+		if (c == '(')
+			stack.push(')');
+		else if (c == '{')
+			stack.push('}');
+		else if (c == '[')
+			stack.push(']');
+		else if (stack.isEmpty() || stack.pop() != c)
+			return false;
 	}
+	return stack.isEmpty();
+}
 ```
 1. Output is [true]
 
 
-## Merge Two Sorted Lists
+## [Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)
 You are given the heads of two sorted linked lists list1 and list2.
 
 Merge the two lists in a one sorted list. The list should be made by splicing together the nodes of the first two lists.
@@ -127,17 +127,56 @@ AlgorithmUtils.mergeTwoLists(list1 = [1,2,4], list2 = [1,3,4]);
 %
 
 ```java
-	public ListNode mergeTwoLists(ListNode l1, ListNode l2){
-			if(l1 == null) return l2;
-			if(l2 == null) return l1;
-			if(l1.val < l2.val){
-				l1.next = mergeTwoLists(l1.next, l2);
-				return l1;
-			} else{
-				l2.next = mergeTwoLists(l1, l2.next);
-				return l2;
-			}
-	}
+public ListNode mergeTwoLists(ListNode l1, ListNode l2){
+		if(l1 == null) return l2;
+		if(l2 == null) return l1;
+		if(l1.val < l2.val){
+			l1.next = mergeTwoLists(l1.next, l2);
+			return l1;
+		} else{
+			l2.next = mergeTwoLists(l1, l2.next);
+			return l2;
+		}
+}
 ```
 1. Output is [1,1,2,3,4,4]
+
+## [Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
+Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same.
+
+Return k after placing the final result in the first k slots of nums.
+
+Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
+ 
+AlgorithmUtils.removeDuplicates([0,0,1,1,1,2,2,3,3,4]);
+%
+
+```java
+public int removeDuplicates(int[] nums) {
+    int i = nums.length > 0 ? 1 : 0;
+    for (int n : nums)
+        if (n > nums[i-1])
+            nums[i++] = n;
+    return i;
+}
+```
+1. Output is [5, nums = [0,1,2,3,4,_,_,_,_,_]]
+
+
+##[Remove Element](https://leetcode.com/problems/remove-element/)
+AlgorithmUtils.removeElement(nums = [0,1,2,2,3,0,4,2], val = 2);
+%
+
+```java
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int idx =0;
+        for(int i=0; i<nums.length; i++){
+            if(nums[i]!=val) nums[idx++]=nums[i];
+        }
+        return idx;
+    }
+}
+```
+1. Output is [5, nums = [0,1,4,0,3,_,_,_]]
 
