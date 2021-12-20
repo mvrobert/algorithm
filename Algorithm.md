@@ -182,3 +182,96 @@ class Solution {
 ```
 1. Output is [5, nums = [0,1,4,0,3,_,_,_]]
 
+
+##  [Length of Last Word](https://leetcode.com/problems/length-of-last-word/)
+Given a string s consisting of some words separated by some number of spaces, return the length of the last word in the string.
+
+A word is a maximal substring consisting of non-space characters only.
+
+AlgorithmUtils.lengthOfLastWord("   fly me   to   the moon  ");
+%
+
+```java
+    public int lengthOfLastWord(String s) {
+        int length = 0;
+		
+		// We are looking for the last word so let's go backward
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (s.charAt(i) != ' ') { // a letter is found so count
+                length++;
+            } else {  // it's a white space instead
+				//  Did we already started to count a word ? Yes so we found the last word
+                if (length > 0) return length;
+            }
+        }
+        return length;
+    }
+```
+1. Output is [4]
+
+## [Implement strStr() - indexOf method](https://leetcode.com/problems/implement-strstr/)
+Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+
+AlgorithmUtils.strStr("hello","ll");
+%
+
+```java
+	public int strStr(String haystack, String needle) {
+	  for (int i = 0; ; i++) {
+		for (int j = 0; ; j++) {
+		  if (j == needle.length()) return i;
+		  if (i + j == haystack.length()) return -1;
+		  if (needle.charAt(j) != haystack.charAt(i + j)) break;
+		}
+	  }
+	}
+```
+1. Output is [2]
+
+
+## [Search Insert Position](https://leetcode.com/problems/search-insert-position/)
+Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+
+You must write an algorithm with O(log n) runtime complexity.
+
+AlgorithmUtils.searchInsert(nums = [1,3,5,6], target = 5);
+%
+
+```java
+    public int searchInsert(int[] A, int target) {
+        int low = 0, high = A.length-1;
+        while(low<=high){
+            int mid = (low+high)/2;
+            if(A[mid] == target) return mid;
+            else if(A[mid] > target) high = mid-1;
+            else low = mid+1;
+        }
+        return low;
+    }
+```
+1. Output is [2]
+
+## [Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)
+Given an integer array nums, find the contiguous subarray (containing at least one number) which has the largest sum and return its sum.
+
+A subarray is a contiguous part of an array.
+
+AlgorithmUtils.maxSubArray(nums = [-2,1,-3,4,-1,2,1,-5,4]);
+%
+
+```java
+    public int maxSubArray(int[] nums) {
+        int n = nums.length;
+        int max = Integer.MIN_VALUE, sum = 0;
+        
+        for(int i=0;i<n;i++){
+            sum += nums[i];
+            max = Math.max(sum,max);
+            
+            if(sum<0) sum = 0;
+        }
+        
+        return max;
+    }
+```
+1. Output is [6]
